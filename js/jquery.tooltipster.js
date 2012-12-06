@@ -54,8 +54,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			
 		}
 		
-		return this.hover(function() {
-			
+    // return this.hover(function() {
+    return this.live({mouseenter: function(){
 			// If there's still a tooltip open, close it before initiating the next tooltip
 			if ($(settings.tooltipTheme).not('.tooltip-kill').length == 1) {
 				animateOut($(settings.tooltipTheme).not('.tooltip-kill'));
@@ -69,7 +69,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			var tooltip_text = $(this).attr('title');
 			
 			// Set the title attr blank to keep the default tooltip text from popping up (removeAttr doesn't work for IE). We'll also create data to refer back to when adding the tooltip attr back later
-			$(this).attr('title', '');
+      $(this).attr('title', '');
 			$(this).data('title', tooltip_text);
 			
 			
@@ -370,7 +370,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				
 			}	
 	
-		}, function() {
+		}, mouseleave: function() {
 			
 			$(settings.tooltipTheme).not('.tooltip-kill').clearQueue();
 						
@@ -382,6 +382,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			// Animate out and remove the tooltip we just sentencted to death
 			animateOut('.tooltip-kill');
 			
+		}
 		});
 	
 	}
